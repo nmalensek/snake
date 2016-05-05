@@ -25,6 +25,15 @@ stdscr.addstr(10, 15, 'f', curses.color_pair(2))
 stdscr.addstr(2, 2, 'f', curses.color_pair(2))
 stdscr.addstr(6, 8, 'f', curses.color_pair(2))
 
+def add_food():
+    random_y = random.randint(2, max_y)
+    random_x = random.randint(0, max_x)
+    plop_space = chr(stdscr.inch(random_y, random_x) & 0xFF)
+    if plop_space != ' ':
+        add_food()
+    else:
+        stdscr.addstr(random_y, random_x, 'f', curses.color_pair(2))
+
 score = 0
 
 def update_score(score):
@@ -32,7 +41,7 @@ def update_score(score):
     score_str = 'Score: %d' % score
     stdscr.addstr(0, curses.COLS - len(score_str), 'Score: %d' % score)
     return score
-
+    
 update_score(-1)
 
 while True:
@@ -50,8 +59,7 @@ while True:
     stdscr.addstr(snake.y, snake.x, 'x', curses.color_pair(1))
 
     if headchar == 'f':
-        add_food = stdscr.addstr(random.randint(0, max_y), random.randint(0, max_x), 'f', curses.color_pair(2))
-        add_food
+        add_food()
         update_score(score)
         # Ate food! (add new food, update score)
         pass
