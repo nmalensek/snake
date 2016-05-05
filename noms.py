@@ -53,7 +53,7 @@ while True:
         break
 
     headchar = chr(stdscr.inch(snake.y, snake.x) & 0xFF)
-    if headchar == 'x' or headchar == '_'
+    if headchar == 'x' or headchar == '_':
         # Nommed self or border
         break
 
