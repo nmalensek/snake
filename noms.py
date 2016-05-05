@@ -27,6 +27,13 @@ stdscr.addstr(6, 8, 'f', curses.color_pair(2))
 
 score = 0
 
+def update_score(score):
+    score += 1
+    score_str = 'Score: %d' % score
+    stdscr.addstr(0, curses.COLS - len(score_str), 'Score: %d' % score)
+    return score
+
+update_score(-1)
 
 while True:
     snake.move_head()
@@ -45,8 +52,7 @@ while True:
     if headchar == 'f':
         add_food = stdscr.addstr(random.randint(0, max_y), random.randint(0, max_x), 'f', curses.color_pair(2))
         add_food
-        score += 1
-        stdscr.addstr(0, 70, 'Score: %d' % score)
+        update_score(score)
         # Ate food! (add new food, update score)
         pass
     else:
