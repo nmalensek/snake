@@ -53,7 +53,7 @@ while True:
         break
 
     headchar = chr(stdscr.inch(snake.y, snake.x) & 0xFF)
-    if headchar == 'x' or headchar == '_'
+    if headchar == 'x' or headchar == '_':
         # Nommed self or border
         break
 
@@ -62,7 +62,7 @@ while True:
 
     if headchar == 'f':
         add_food()
-        update_score(score)
+        score = update_score(score)
         # Ate food! (add new food, update score)
         pass
     else:
