@@ -62,7 +62,7 @@ while True:
 
     if headchar == 'f':
         add_food()
-        update_score(score)
+        score = update_score(score)
         # Ate food! (add new food, update score)
         pass
     else:
