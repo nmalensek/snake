@@ -25,6 +25,8 @@ stdscr.addstr(10, 15, 'f', curses.color_pair(2))
 stdscr.addstr(2, 2, 'f', curses.color_pair(2))
 stdscr.addstr(6, 8, 'f', curses.color_pair(2))
 
+stdscr.hline(1, 0, '_', max_x + 1)
+
 def add_food():
     random_y = random.randint(2, max_y)
     random_x = random.randint(0, max_x)
@@ -51,7 +53,7 @@ while True:
         break
 
     headchar = chr(stdscr.inch(snake.y, snake.x) & 0xFF)
-    if headchar == 'x'
+    if headchar == 'x' or headchar == '_'
         # Nommed self or border
         break
 
