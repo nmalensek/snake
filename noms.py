@@ -36,14 +36,20 @@ def add_food():
     else:
         stdscr.addstr(random_y, random_x, 'f', curses.color_pair(2))
 
-score = 0
-
 def update_score(score):
     score += 1
     score_str = 'Score: %d' % score
     stdscr.addstr(0, curses.COLS - len(score_str), 'Score: %d' % score)
     return score
+
+def check_win(score):
+    if score >= (((max_y - 1) * max_x) - 3):
+        print('you win!')
+        raise SystemExit
+    else:
+        pass
     
+score = 0    
 update_score(-1)
 
 while True:
@@ -63,6 +69,7 @@ while True:
     if headchar == 'f':
         add_food()
         score = update_score(score)
+        check_win(score)
         # Ate food! (add new food, update score)
         pass
     else:
