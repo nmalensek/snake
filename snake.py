@@ -23,10 +23,13 @@ class Snake:
     direction = KEYMAP[curses.KEY_RIGHT]
 
     def set_direction(self, key):
-        try:
+        vertical = self.KEYMAP[curses.KEY_UP], self.KEYMAP[curses.KEY_DOWN]
+        horizontal = self.KEYMAP[curses.KEY_RIGHT], self.KEYMAP[curses.KEY_LEFT]
+        if self.direction in horizontal and self.KEYMAP[key] in vertical \
+                or self.direction in vertical and self.KEYMAP[key] in horizontal:
             self.direction = self.KEYMAP[key]
-        except:
-            pass # This wasn't an arrow key
+        else:
+            pass
 
     def move_head(self):
         self.body.append(self.direction)
