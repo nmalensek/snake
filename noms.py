@@ -83,11 +83,12 @@ while True:
     time.sleep(0.05) # If I wanted to make the game harder, I might start here...
 
     button = stdscr.getch()
-    if button == ord('q'):
-        # Q is for quitting, it's also good enough for me
-        break
-    else:
-        snake.set_direction(button)
+    if button != -1: # keep doing your thing if no button's pressed
+        if button == ord('q'):
+         # Q is for quitting, it's also good enough for me
+            break
+        else:
+            snake.set_direction(button)
 
 curses.endwin() # Out of the game loop, clean up curses
 print('bye!')
