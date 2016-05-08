@@ -8,10 +8,10 @@ class Snake:
     # For example, 'up' would move you in the negative y direction.
     KEYMAP = {
             # key            : (y, x)
-            curses.KEY_UP    : (-1, 0),
-            curses.KEY_DOWN  : (1, 0),
-            curses.KEY_LEFT  : (0, -1),
-            curses.KEY_RIGHT : (0, 1),
+            curses.KEY_UP    : [-1, 0],
+            curses.KEY_DOWN  : [1, 0],
+            curses.KEY_LEFT  : [0, -1],
+            curses.KEY_RIGHT : [0, 1],
     }
     #start points, simpler
     y = 5
@@ -23,12 +23,11 @@ class Snake:
     direction = KEYMAP[curses.KEY_RIGHT]
 
     def set_direction(self, key):
-        vertical = self.KEYMAP[curses.KEY_UP], self.KEYMAP[curses.KEY_DOWN]
-        horizontal = self.KEYMAP[curses.KEY_RIGHT], self.KEYMAP[curses.KEY_LEFT]
-        if self.direction in horizontal and self.KEYMAP[key] in vertical \
-                or self.direction in vertical and self.KEYMAP[key] in horizontal:
-            self.direction = self.KEYMAP[key]
-        else:
+        new_direction = self.KEYMAP[key]
+        try:
+            if new_direction != [-x for x in self.direction]:
+                self.direction = new_direction
+        except:
             pass
 
     def move_head(self):
